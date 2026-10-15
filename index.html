@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stas Lohvinov, Senior Frontend Game Developer</title>
+<meta name="description" content="Senior frontend developer building browser slot and casino games with TypeScript, PixiJS, Phaser, Spine and GSAP. 25+ games shipped for regulated markets.">
+<meta property="og:title" content="Stas Lohvinov, Senior Frontend Game Developer">
+<meta property="og:description" content="Browser slot and casino games with TypeScript, PixiJS, Spine and GSAP. 25+ games shipped.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1A1733">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231A1733'/%3E%3Crect x='5' y='8' width='6' height='16' rx='2' fill='%23E6B450'/%3E%3Crect x='13' y='8' width='6' height='16' rx='2' fill='%23E6B450'/%3E%3Crect x='21' y='8' width='6' height='16' rx='2' fill='%23E6B450'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="reels.js" defer></script>
+<style>
+  :root {
+    --ink: #1A1733;
+    --panel: #25204A;
+    --line: #3B3568;
+    --text: #EFEBF7;
+    --muted: #ABA5CB;
+    --brass: #E6B450;
+    --brass-hi: #F2C970;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font: 400 1.0625rem/1.6 "Atkinson Hyperlegible", system-ui, sans-serif;
+  }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1rem; }
+  @media (min-width: 40rem) { .wrap { padding: 0 2rem; } }
+
+  h1, h2, h3 { font-family: "Unbounded", system-ui, sans-serif; font-weight: 600; line-height: 1.15; margin: 0; }
+  a { color: var(--text); text-decoration-color: var(--brass); text-underline-offset: .2em; }
+  a:hover { color: var(--brass-hi); }
+  :focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; border-radius: 4px; }
+
+  /* Hero */
+  .hero { display: grid; gap: 2.5rem; padding: 3.5rem 0 4rem; align-items: center; }
+  @media (min-width: 56rem) { .hero { grid-template-columns: 1fr 1fr; gap: 4rem; padding: 6rem 0 5.5rem; } }
+  h1 { font-size: clamp(2.5rem, 7vw, 4.25rem); font-weight: 700; letter-spacing: -0.02em; }
+  .role { font-family: "Unbounded", system-ui, sans-serif; font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--brass); margin: 1rem 0 0; line-height: 1.35; }
+  .lede { max-width: 34rem; color: var(--muted); margin: 1.25rem 0 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .btn {
+    display: inline-flex; align-items: center; min-height: 2.75rem; padding: .55rem 1.2rem;
+    border-radius: 999px; border: 1.5px solid var(--line); color: var(--text);
+    text-decoration: none; font-weight: 700;
+  }
+  .btn:hover { border-color: var(--brass); color: var(--text); }
+  .btn.primary { background: var(--brass); border-color: var(--brass); color: var(--ink); }
+  .btn.primary:hover { background: var(--brass-hi); border-color: var(--brass-hi); color: var(--ink); }
+  .note { font-size: .95rem; color: var(--muted); margin: 1.25rem 0 0; }
+
+  /* Reels */
+  .machine { margin: 0; }
+  .machine canvas { display: block; width: 100%; height: 280px; cursor: pointer; }
+  .machine-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: .9rem; }
+  .machine-bar p { margin: 0; font-size: .95rem; color: var(--muted); }
+  .spin {
+    flex: none; font: 600 .95rem "Unbounded", system-ui, sans-serif; color: var(--brass);
+    background: transparent; border: 1.5px solid var(--brass); border-radius: 999px;
+    padding: .55rem 1.4rem; min-height: 2.75rem; cursor: pointer;
+  }
+  .spin:hover:not(:disabled) { background: var(--brass); color: var(--ink); }
+  .spin:disabled { opacity: .45; cursor: default; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  /* Sections */
+  section { padding: 3rem 0; }
+  @media (min-width: 56rem) { section { padding: 4rem 0; } }
+  h2 { font-size: clamp(1.35rem, 3vw, 1.75rem); margin-bottom: 1.5rem; }
+
+  .jobs { list-style: none; margin: 0; padding: 0; }
+  .job { display: grid; gap: .25rem 2.5rem; padding: 1.75rem 0; border-top: 1px solid var(--line); }
+  .job:last-child { border-bottom: 1px solid var(--line); }
+  @media (min-width: 48rem) { .job { grid-template-columns: 11rem 1fr; } }
+  .when { color: var(--muted); font-size: .95rem; padding-top: .15rem; }
+  .job h3 { font-size: 1.1rem; }
+  .where { color: var(--muted); margin: .3rem 0 0; }
+  .job ul { margin: .85rem 0 0; padding-left: 1.1rem; max-width: 44rem; }
+  .job li { margin: .4rem 0; }
+  .job li::marker { color: var(--brass); }
+
+  .stack { display: grid; gap: 1.5rem 3rem; margin: 0; }
+  @media (min-width: 48rem) { .stack { grid-template-columns: 1fr 1fr; } }
+  .stack dt { font-family: "Unbounded", system-ui, sans-serif; font-size: .95rem; color: var(--brass); margin-bottom: .35rem; }
+  .stack dd { margin: 0; }
+
+  .contact p { color: var(--muted); max-width: 36rem; margin: 0; }
+  .email {
+    display: inline-block; margin-top: 1.25rem; font: 600 clamp(1.2rem, 4.5vw, 2.25rem) "Unbounded", system-ui, sans-serif;
+    overflow-wrap: anywhere;
+  }
+  .contact .actions { margin-top: 1.5rem; }
+  footer { padding: 2rem 0 3rem; color: var(--muted); font-size: .9rem; }
+
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <div>
+      <h1>Stas Lohvinov</h1>
+      <p class="role">Senior frontend developer for browser slot and casino games</p>
+      <p class="lede">I build games with TypeScript, PixiJS, Phaser, Spine and GSAP. 8+ years in frontend, 4+ of them in iGaming, with 25+ slots, cascades and card games shipped for regulated markets.</p>
+      <div class="actions">
+        <a class="btn primary" href="Stas-Lohvinov-CV.pdf" download>Download CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/stas-lohvinov">LinkedIn</a>
+        <a class="btn" href="mailto:stas.lohvinov@proton.me">Email</a>
+      </div>
+      <p class="note">Clips from recent titles are on <a href="https://www.linkedin.com/in/stas-lohvinov">my LinkedIn</a>.</p>
+    </div>
+
+    <figure class="machine">
+      <canvas id="reels" role="img" aria-label="Three slot reels that land on figures from my CV"></canvas>
+      <figcaption class="machine-bar">
+        <p>Every symbol is a real number from my CV.</p>
+        <button class="spin" id="spin" type="button">Spin</button>
+      </figcaption>
+      <p class="sr-only" id="reel-result" aria-live="polite"></p>
+    </figure>
+  </header>
+
+  <section aria-labelledby="exp">
+    <h2 id="exp">Experience</h2>
+    <ol class="jobs">
+      <li class="job">
+        <div class="when">2026</div>
+        <div>
+          <h3>Senior frontend game developer</h3>
+          <p class="where">NeverEnding, remote</p>
+          <ul>
+            <li>Shipped 4 slot games on a proprietary PixiJS engine, with Spine and GSAP.</li>
+            <li>Cut bundle size by 40% and draw calls by 32% across several titles, and reduced memory use.</li>
+            <li>Added audiosprite support to the engine, merging dozens of SFX files into one asset and cutting initial load time by 15%.</li>
+            <li>Wrote the typed backend response specification that became the standard for later titles.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="job">
+        <div class="when">Apr 2024 – Dec 2025</div>
+        <div>
+          <h3>Frontend game developer</h3>
+          <p class="where">Innovecs, remote</p>
+          <ul>
+            <li>Shipped 4 new and 8 reskinned slot games on a TypeScript/PixiJS framework with state machines and React UI.</li>
+            <li>Led optimisation of a production title, cutting bundle size by 35%.</li>
+            <li>Built free spins, bonus rounds, turbo and auto modes, and compliance controls for regulated markets.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="job">
+        <div class="when">Dec 2021 – Mar 2024</div>
+        <div>
+          <h3>TypeScript developer</h3>
+          <p class="where">DXC Luxoft, remote</p>
+          <ul>
+            <li>Owned a VS Code extension that replaced CLI build, run and debug workflows with native editor UI.</li>
+            <li>Raised test coverage from 40% to 90%.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="job">
+        <div class="when">Aug 2019 – Nov 2021</div>
+        <div>
+          <h3>Frontend game developer</h3>
+          <p class="where">4RaBet, remote</p>
+          <ul>
+            <li>Shipped 14 Phaser casino games, including baccarat, Hi-Lo and roulette, licensed across multiple casinos.</li>
+            <li>Built a boilerplate framework that sped up later games, and a WebSocket live betting dashboard.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="job">
+        <div class="when">2017 – 2019</div>
+        <div>
+          <h3>Frontend developer</h3>
+          <p class="where">Various projects</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="stack">
+    <h2 id="stack">Stack</h2>
+    <dl class="stack">
+      <div><dt>Rendering and animation</dt><dd>PixiJS, Canvas API, Spine, GSAP</dd></div>
+      <div><dt>Languages and frameworks</dt><dd>TypeScript, JavaScript, Phaser, React, Redux</dd></div>
+      <div><dt>Architecture</dt><dd>State machines, game loops, OOP, WebSockets</dd></div>
+      <div><dt>Tooling</dt><dd>Vite, Webpack, TexturePacker, Jest, Mocha, Git</dd></div>
+    </dl>
+  </section>
+
+  <section class="contact" aria-labelledby="contact">
+    <h2 id="contact">Get in touch</h2>
+    <p>Open to remote roles from Ukraine. Email is the quickest way to reach me.</p>
+    <a class="email" href="mailto:stas.lohvinov@proton.me">stas.lohvinov@proton.me</a>
+    <div class="actions">
+      <a class="btn" href="https://www.linkedin.com/in/stas-lohvinov">LinkedIn</a>
+      <a class="btn" href="Stas-Lohvinov-CV.pdf" download>Download CV</a>
+    </div>
+  </section>
+</main>
+<footer class="wrap">© 2026 Stas Lohvinov</footer>
+
+</body>
+</html>
