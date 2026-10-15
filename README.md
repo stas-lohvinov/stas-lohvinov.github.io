@@ -17,7 +17,7 @@ Plain HTML, CSS and JavaScript. No build step, no dependencies except Google Fon
 | `works.json` | Showcase entries. An empty array `[]` hides the section |
 | `works.example.json` | Template entry to copy into `works.json` |
 | `works/<slug>/` | Images and videos for showcase entries |
-| `Stas-Lohvinov-CV.pdf` | CV linked from the "Download CV" buttons |
+| `stas_lohvinov_frontend_dev_resume.pdf` | CV linked from the "Download CV" buttons |
 
 ## Run locally
 
