@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "title": "7 Pots of Ra: Hold and Win",
+    "year": 2026,
+    "type": "NeverEnding project",
+    "summary": "A released Hold and Win slot where I was the sole frontend developer and built the full client: UI, game features and backend integration (PixiJS, Spine, GSAP). The post walks through the hardest part: expanding the bonus board from 5x3 to 5x5 mid-sequence. The frame animation, grid, masks and off-grid elements move on one timeline, the scene rescales to fit the viewport, and the grid state is remapped from 3-row to 5-row coordinates at the exact moment the server switches",
+    "stack": ["PixiJS", "Spine", "GSAP"],
+    "media": {
+      "type": "video",
+      "src": "works/7-pots-of-ra/bonus-game-short.mp4",
+      "poster": "works/7-pots-of-ra/poster.jpg",
+      "alt": "Five-reel slot spinning and landing a cascade win",
+      "aspect": "16/9"
+    },
+    "links": [
+      { "label": "Play demo", "href": "demos/reel-spin/" },
+      { "label": "Source code", "href": "https://github.com/stas-lohvinov/reel-spin" }
+    ]
+  }
+]
