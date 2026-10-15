@@ -31,6 +31,7 @@
   const section = document.getElementById('showcase');
   const list = document.getElementById('works');
   if (!section || !list) return;
+  if (window.SITE_CONFIG?.features?.showcase === false) return;
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const el = (tag, cls, text) => {

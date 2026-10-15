@@ -9,21 +9,24 @@ Live at https://stas-lohvinov.github.io/ (GitHub Pages user site, served from `m
 ## Hard constraints
 
 - No build step, no bundler, no npm dependencies. Plain HTML, CSS and vanilla JS that runs as-is on GitHub Pages.
-- Only external resource is Google Fonts (Unbounded, Atkinson Hyperlegible). Ask before adding any other library or CDN.
+- External resources: Google Fonts (Unbounded, Atkinson Hyperlegible) and LinkedIn post embeds (iframes from `www.linkedin.com`, listed in `posts.json`, currently disabled by flag). Ask before adding anything else.
 - All paths relative (`reels.js`, `works/...`). The site lives at the domain root.
 - This repo is public. Never commit tokens, credentials, private notes, rates, or anything about job-search status beyond what the page already says.
 
 ## Architecture
 
+- `config.js` sets `window.SITE_CONFIG.features` (flags: `showcase`, `linkedinPosts`, `experienceSummary`) and must load first. Only an explicit `false` turns a feature off; `showcase.js` and `posts.js` return early without fetching. `linkedinPosts` is currently off.
 - `index.html` loads `reels.js` and `showcase.js` as independent IIFEs. They share no state.
+- `experience.js` renders `experience.json` into `#jobs`. The section is core content with no feature flag, but it is hidden until the fetch succeeds, so it needs a local server like the rest.
+- `posts.js` renders `posts.json` (max 3 valid entries) into `#post-list`. It builds each iframe `src` from a fixed LinkedIn prefix plus a `urn` checked against `SETTINGS.urnPattern`; never take a URL from the data.
 - `reels.js` resolves `'--name'` entries in `STYLE.colors` from `:root` once at load, so a palette change in `styles.css` needs a page reload.
 - `showcase.js` fetches `works.json` with `cache: 'no-cache'`. An empty `[]` keeps `#showcase` hidden; entries without a `title` are skipped with a `console.warn`.
 - The CV is `stas_lohvinov_frontend_dev_resume.pdf`, linked from `index.html` with `download="Stas-Lohvinov-CV.pdf"`. Keep the repo filename and the hrefs in sync.
 
 ## Content rules
 
-- Facts, numbers, dates and job titles come from Stas's CV, which is not in this repo. Never invent or round up a metric. If a number isn't already on the page, ask before adding it.
-- Numbers appear in two places: the page text in `index.html` and `DATA.reels` in `reels.js`. Change both together.
+- Facts, numbers, dates and job titles come from Stas's CV (`stas_lohvinov_frontend_dev_resume.pdf` in the repo root). Never invent or round up a metric. If a number isn't already on the page, ask before adding it.
+- Numbers appear in two places: the page text (`index.html` and `experience.json`) and `DATA.reels` in `reels.js`. Change them together.
 - NeverEnding is shown as "2026" with no end month. Don't change it to "Present" or a specific month without asking.
 - NDA: never add employer game names, builds, code or clips unless Stas confirms they're cleared. Personal projects are fine.
 - Copy style: plain, specific, sentence case. No buzzwords ("passionate", "leverage", "results-driven"), no all-caps labels, no "→" on links, no middle-dot separators, minimal em dashes.
@@ -31,7 +34,7 @@ Live at https://stas-lohvinov.github.io/ (GitHub Pages user site, served from `m
 ## Code conventions
 
 - Each JS file is an IIFE with a config block at the top (`DATA`/`STYLE` in `reels.js`, `SETTINGS` in `showcase.js`) and the engine/render code below. Keep tunable values in config, not scattered in the code.
-- Showcase content lives in `works.json` only. Don't hardcode entries in JS or HTML. Schema: top of `showcase.js`.
+- Showcase content lives in `works.json` only, LinkedIn posts in `posts.json` only, jobs in `experience.json` only. New optional sections get a flag in `config.js`. Don't hardcode entries in JS or HTML. Schema: top of `showcase.js`.
 - Colours are CSS variables in `:root` of `styles.css` (`--ink`, `--panel`, `--line`, `--text`, `--muted`, `--brass`, `--brass-hi`). Reuse them. The canvas reads them via `'--name'` strings in `STYLE.colors`.
 - Build DOM with `createElement` and `textContent`, not `innerHTML` with data.
 - Design: one bold element (the reels). Keep everything else quiet. Don't add fade-in-on-scroll effects or hover animations on every block.

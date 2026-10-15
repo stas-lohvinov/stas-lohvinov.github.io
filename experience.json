@@ -1,0 +1,51 @@
+[
+  {
+    "when": "2026",
+    "title": "Senior frontend game developer",
+    "where": "NeverEnding, remote",
+    "summary": "Built browser-based slot games on a proprietary PixiJS engine, taking titles from planning and estimation through to production release, and contributing improvements back to the engine itself.",
+    "highlights": [
+      "Shipped 4 slot games on a proprietary PixiJS engine, with Spine and GSAP.",
+      "Cut bundle size by 40% and draw calls by 32% across several titles, and reduced memory use.",
+      "Added audiosprite support to the engine, merging dozens of SFX files into one asset and cutting initial load time by 15%.",
+      "Wrote the typed backend response specification that became the standard for later titles."
+    ]
+  },
+  {
+    "when": "Apr 2024 - Dec 2025",
+    "title": "Frontend game developer",
+    "where": "Innovecs, remote",
+    "summary": "Delivered and optimised browser-based slot games using a proprietary TypeScript/PixiJS framework with state machines, sequential flows, and React-based UI elements.",
+    "highlights": [
+      "Shipped 4 new and 8 reskinned slot games on a TypeScript/PixiJS framework with state machines and React UI.",
+      "Led optimisation of a production title, cutting bundle size by 35%.",
+      "Built free spins, bonus rounds, turbo and auto modes, and compliance controls for regulated markets."
+    ]
+  },
+  {
+    "when": "Dec 2021 - Mar 2024",
+    "title": "TypeScript developer",
+    "where": "DXC Luxoft, remote",
+    "summary": "Owned the VS Code extension component (TypeScript), providing a UI layer for build, run, and debug workflows that replaced manual CLI commands with native VS Code UI elements and command palette.",
+    "highlights": [
+      "Owned a VS Code extension that replaced CLI build, run and debug workflows with native editor UI.",
+      "Raised test coverage from 40% to 90%."
+    ]
+  },
+  {
+    "when": "Aug 2019 - Nov 2021",
+    "title": "Frontend game developer",
+    "where": "4RaBet, remote",
+    "summary": "Developed browser-based gambling games using Phaser for casino and sports betting platforms. Initially contributed to platform frontend features before transitioning to full-time game development.",
+    "highlights": [
+      "Shipped 14 Phaser casino games, including baccarat, Hi-Lo and roulette, licensed across multiple casinos.",
+      "Built a boilerplate framework that sped up later games, and a WebSocket live betting dashboard."
+    ]
+  },
+  {
+    "when": "2017 - 2019",
+    "title": "Frontend developer",
+    "where": "Various projects",
+    "summary": "Information on earlier projects can be provided upon request."
+  }
+]
