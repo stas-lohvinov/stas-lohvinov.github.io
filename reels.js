@@ -9,19 +9,19 @@
     reels: [
       [
         { v: '25+', l: 'games shipped' },
-        { v: '8+', l: 'years in frontend' },
-        { v: '4+', l: 'years in iGaming' },
-        { v: '14', l: 'Phaser casino games' }
-      ],
-      [
         { v: '-40%', l: 'bundle size' },
-        { v: '-15%', l: 'initial load time' },
-        { v: '90%', l: 'test coverage, up from 40%' }
+        { v: '14', l: 'Phaser casino games' },
+        { v: '-32%', l: 'draw calls' },
       ],
       [
-        { v: '-32%', l: 'draw calls' },
+        { v: '8+', l: 'years in frontend' },
+        { v: '-15%', l: 'initial load time' },
+        { v: '90%', l: 'test coverage, up from 40%' },
+      ],
+      [
+        { v: '4+', l: 'years in iGaming' },
         { v: '12', l: 'slots at Innovecs' },
-        { v: '4', l: 'slots on a Pixi engine' }
+        { v: '4', l: 'slots on a Pixi engine' },
       ]
     ],
     // Index of the symbol each reel lands on after the first spin on page load.
