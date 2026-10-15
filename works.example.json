@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Reel spin demo",
+    "year": 2026,
+    "type": "Personal project",
+    "summary": "One or two sentences: what it is and what you built.",
+    "stack": ["PixiJS", "Spine", "GSAP"],
+    "media": {
+      "type": "video",
+      "src": "works/reel-spin/clip.mp4",
+      "poster": "works/reel-spin/poster.jpg",
+      "alt": "Five-reel slot spinning and landing a cascade win",
+      "aspect": "16/9"
+    },
+    "links": [
+      { "label": "Play demo", "href": "demos/reel-spin/" },
+      { "label": "Source code", "href": "https://github.com/stas-lohvinov/reel-spin" }
+    ]
+  }
+]
