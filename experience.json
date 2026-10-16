@@ -1,12 +1,12 @@
 [
   {
-    "when": "2026",
+    "when": "Mar 2026 - Oct 2026",
     "title": "Senior frontend game developer",
     "where": "NeverEnding, remote",
     "summary": "Built browser-based slot games on a proprietary PixiJS engine, taking titles from planning and estimation through to production release, and contributing improvements back to the engine itself.",
     "highlights": [
       "Shipped 4 slot games on a proprietary PixiJS engine, with Spine and GSAP.",
-      "Cut bundle size by 40% and draw calls by 32% across several titles, and reduced memory use.",
+      "Cut bundle size by 40% and draw calls by 32% across several titles, and reduced memory usage.",
       "Added audiosprite support to the engine, merging dozens of SFX files into one asset and cutting initial load time by 15%.",
       "Wrote the typed backend response specification that became the standard for later titles."
     ]
@@ -35,7 +35,7 @@
   {
     "when": "Aug 2019 - Nov 2021",
     "title": "Frontend game developer",
-    "where": "4RaBet, remote",
+    "where": "Lucky Elephant Gaming, remote",
     "summary": "Developed browser-based gambling games using Phaser for casino and sports betting platforms. Initially contributed to platform frontend features before transitioning to full-time game development.",
     "highlights": [
       "Shipped 14 Phaser casino games, including baccarat, Hi-Lo and roulette, licensed across multiple casinos.",
@@ -46,6 +46,6 @@
     "when": "2017 - 2019",
     "title": "Frontend developer",
     "where": "Various projects",
-    "summary": "Information on earlier projects can be provided upon request."
+    "highlights": ["Information on earlier projects can be provided upon request."]
   }
 ]
