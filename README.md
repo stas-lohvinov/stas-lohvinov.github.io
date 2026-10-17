@@ -4,7 +4,7 @@ Portfolio landing page of Stas Lohvinov, senior frontend developer for browser s
 
 Live: https://stas-lohvinov.github.io/
 
-Plain HTML, CSS and JavaScript. No build step, no dependencies except Google Fonts. Hosted on GitHub Pages from the `main` branch root.
+Plain HTML, CSS and JavaScript. No build step, no dependencies except Google Fonts and GoatCounter analytics. Hosted on GitHub Pages from the `main` branch root.
 
 ## Structure
 
@@ -20,6 +20,7 @@ Plain HTML, CSS and JavaScript. No build step, no dependencies except Google Fon
 | `works.json` | Showcase entries. An empty array `[]` hides the section |
 | `works.example.json` | Template entry to copy into `works.json` |
 | `posts.js` | Renders the "LinkedIn posts" section from `posts.json` |
+| `telemetry.js` | Sends GoatCounter events (CV, LinkedIn, email, reel spin, showcase links and videos). `SETTINGS` at the top |
 | `posts.json` | LinkedIn post URNs, 1 to 3 shown. An empty array `[]` hides the section |
 | `works/<slug>/` | Images and videos for showcase entries |
 | `stas_lohvinov_frontend_dev_resume.pdf` | CV linked from the "Download CV" buttons |
@@ -70,6 +71,31 @@ On LinkedIn open the post menu, choose "Embed this post", and copy the `urn:li:.
 Edit `DATA.reels` in `reels.js`. Each reel is an array of `{ v, l }` symbols (value and label). `DATA.firstLanding` sets which symbol each reel stops on after the first spin. Every number must match the CV.
 
 Visual settings (fonts, sizes, radii, timing, bounce) are in `STYLE`. Colours written as `'--name'` are read from the CSS variables in `styles.css`, so a palette change there applies to the canvas too.
+
+## Analytics
+
+[GoatCounter](https://www.goatcounter.com) counts visits without cookies. Dashboard: https://losta.goatcounter.com
+
+Events sent by `telemetry.js` (shown under "Events" on the dashboard):
+
+| Event | When |
+| --- | --- |
+| `cv-download` | A "Download CV" link is clicked |
+| `linkedin-click` | A LinkedIn link is clicked |
+| `email-click` | A `mailto:` link is clicked |
+| `reel-spin` | The visitor spins the reels, once per page view. The automatic spin on load is not counted |
+| `showcase-link` | A link in "Selected work" is clicked. Title is `Entry title: link label` |
+| `showcase-video-play` | The visitor starts a showcase video, once per video per page view. Muted autoplay is not counted. Title is the entry title |
+
+Event names and selectors are in `SETTINGS` in `telemetry.js`. If `count.js` is blocked, nothing is sent and the page works as usual.
+
+### Per-application links
+
+Send each application its own link: `https://stas-lohvinov.github.io/?ref=acme`. GoatCounter reads `ref` (also `utm_source`, `src`, `source`) as the campaign source and lists it under "Campaigns". Use one lowercase company slug per application.
+
+### Exclude my own visits
+
+Open `https://stas-lohvinov.github.io/#toggle-goatcounter` once in each browser (laptop, phone). Open it again to turn counting back on. `localhost` is ignored by GoatCounter by default.
 
 ## Deploy
 

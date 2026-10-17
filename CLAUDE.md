@@ -9,7 +9,7 @@ Live at https://stas-lohvinov.github.io/ (GitHub Pages user site, served from `m
 ## Hard constraints
 
 - No build step, no bundler, no npm dependencies. Plain HTML, CSS and vanilla JS that runs as-is on GitHub Pages.
-- External resources: Google Fonts (Unbounded, Atkinson Hyperlegible) and LinkedIn post embeds (iframes from `www.linkedin.com`, listed in `posts.json`, currently disabled by flag). Ask before adding anything else.
+- External resources: Google Fonts (Unbounded, Atkinson Hyperlegible), LinkedIn post embeds (iframes from `www.linkedin.com`, listed in `posts.json`, currently disabled by flag) and GoatCounter analytics (`gc.zgo.at/count.js`, cookieless). Ask before adding anything else.
 - All paths relative (`reels.js`, `works/...`). The site lives at the domain root.
 - This repo is public. Never commit tokens, credentials, private notes, rates, or anything about job-search status beyond what the page already says.
 
@@ -19,6 +19,7 @@ Live at https://stas-lohvinov.github.io/ (GitHub Pages user site, served from `m
 - `index.html` loads `reels.js` and `showcase.js` as independent IIFEs. They share no state.
 - `experience.js` renders `experience.json` into `#jobs`. The section is core content with no feature flag, but it is hidden until the fetch succeeds, so it needs a local server like the rest.
 - `posts.js` renders `posts.json` (max 3 valid entries) into `#post-list`. It builds each iframe `src` from a fixed LinkedIn prefix plus a `urn` checked against `SETTINGS.urnPattern`; never take a URL from the data.
+- `telemetry.js` sends GoatCounter events through delegated listeners on `document`. It calls `window.goatcounter.count` only if it exists at event time, so a blocked `count.js` changes nothing. Event names and selectors are in its `SETTINGS`. Events carry paths and titles only, no personal data.
 - `reels.js` resolves `'--name'` entries in `STYLE.colors` from `:root` once at load, so a palette change in `styles.css` needs a page reload.
 - `showcase.js` fetches `works.json` with `cache: 'no-cache'`. An empty `[]` keeps `#showcase` hidden; entries without a `title` are skipped with a `console.warn`.
 - The CV is `stas_lohvinov_frontend_dev_resume.pdf`, linked from `index.html` with `download="Stas-Lohvinov-CV.pdf"`. Keep the repo filename and the hrefs in sync.
@@ -34,6 +35,7 @@ Live at https://stas-lohvinov.github.io/ (GitHub Pages user site, served from `m
 ## Code conventions
 
 - Each JS file is an IIFE with a config block at the top (`DATA`/`STYLE` in `reels.js`, `SETTINGS` in `showcase.js`) and the engine/render code below. Keep tunable values in config, not scattered in the code.
+- New tracked interactions go into `telemetry.js` `SETTINGS`, not into other scripts.
 - Showcase content lives in `works.json` only, LinkedIn posts in `posts.json` only, jobs in `experience.json` only. New optional sections get a flag in `config.js`. Don't hardcode entries in JS or HTML. Schema: top of `showcase.js`.
 - Colours are CSS variables in `:root` of `styles.css` (`--ink`, `--panel`, `--line`, `--text`, `--muted`, `--brass`, `--brass-hi`). Reuse them. The canvas reads them via `'--name'` strings in `STYLE.colors`.
 - Build DOM with `createElement` and `textContent`, not `innerHTML` with data.
