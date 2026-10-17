@@ -7,7 +7,7 @@
     "stack": ["JavaScript", "PixiJS", "Spine", "GSAP", "Howler"],
     "media": {
       "type": "video",
-      "src": "works/7-pots-of-ra/bonus-game-short.mp4",
+      "src": "works/7-pots-of-ra/bonus-game.mp4",
       "poster": "works/7-pots-of-ra/poster.jpg",
       "alt": "Five-reel slot spinning and landing a cascade win",
       "aspect": "16/9"
