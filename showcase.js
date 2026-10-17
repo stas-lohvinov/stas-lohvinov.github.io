@@ -85,7 +85,7 @@
     if (meta) body.append(el('p', 'work-meta', meta));
     if (w.summary) body.append(el('p', 'work-summary', w.summary));
     if (Array.isArray(w.stack) && w.stack.length) {
-      body.append(el('p', 'work-stack', 'Built with ' + w.stack.join(', ')));
+      body.append(el('p', 'work-stack', 'Tech stack: ' + w.stack.join(', ')));
     }
     if (Array.isArray(w.links) && w.links.length) {
       const actions = el('div', 'actions');

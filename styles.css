@@ -305,11 +305,13 @@ footer {
   display: grid;
   gap: 3.5rem;
 }
+
 .work {
   display: grid;
   gap: 1.25rem 2.5rem;
   align-items: center;
 }
+
 @media (min-width: 56rem) {
   .work {
     grid-template-columns: 1.35fr 1fr;
@@ -321,6 +323,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 .work-media {
   margin: 0;
   width: 100%;

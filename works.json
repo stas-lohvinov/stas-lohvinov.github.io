@@ -4,7 +4,7 @@
     "year": 2026,
     "type": "NeverEnding project",
     "summary": "A released Hold and Win slot where I was the sole frontend developer and built the full client: UI, game features and backend integration (PixiJS, Spine, GSAP). The post walks through the hardest part: expanding the bonus board from 5x3 to 5x5 mid-sequence. The frame animation, grid, masks and off-grid elements move on one timeline, the scene rescales to fit the viewport, and the grid state is remapped from 3-row to 5-row coordinates at the exact moment the server switches",
-    "stack": ["PixiJS", "Spine", "GSAP"],
+    "stack": ["JavaScript", "PixiJS", "Spine", "GSAP", "Howler"],
     "media": {
       "type": "video",
       "src": "works/7-pots-of-ra/bonus-game-short.mp4",
@@ -13,8 +13,24 @@
       "aspect": "16/9"
     },
     "links": [
-      { "label": "Play demo", "href": "demos/reel-spin/" },
-      { "label": "Source code", "href": "https://github.com/stas-lohvinov/reel-spin" }
+      { "label": "Play demo", "href": "https://neverending.tech/slots/7-pots-of-ra-hold-and-win" }
+    ]
+  },
+  {
+    "title": "3 Chili Bundles: Hold and Win",
+    "year": 2026,
+    "type": "NeverEnding project",
+    "summary": "A fiesta-themed 5x3 slot NeverEnding released in June 2026 for desktop and mobile. As the sole frontend developer, I owned the client from the studio's boilerplate all the way to release. I built the game's features: pots, coin collectors, stacked wilds that expand and reveal multipliers, and revealing coins. I also put together everything the player sees and hears: graphics, Spine animations, SFX, game transitions and the paytable.",
+    "stack": ["JavaScript", "PixiJS", "Spine", "GSAP", "Howler"],
+    "media": {
+      "type": "video",
+      "src": "works/3-chili-bundles/clip.mp4",
+      "poster": "works/3-chili-bundles/poster.jpg",
+      "alt": "Five-reel slot spinning and landing a bonus game",
+      "aspect": "16/9"
+    },
+    "links": [
+      { "label": "Play demo", "href": "https://neverending.tech/slots/3-chili-bundles-hold-and-win" }
     ]
   }
 ]
